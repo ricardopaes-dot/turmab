@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Dia "D" da Educação Profissional e Tecnológica - Desenvolvimento de Sistemas</title>
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+    body{
+      font-family: Arial, sans-serif;
+      background:#050505;
+      color:#f4f4f4;
+    }
+    a{
+      text-decoration:none;
+    }
+
+    /* CABEÇALHO */
+    header{
+      background: linear-gradient(135deg, #000000, #008000);
+      color:#fff;
+      padding:20px;
+      position:relative;
+      overflow:hidden;
+    }
+   header {
+    background: url("https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    border-bottom: 6px solid #00cc33;
+}
+    }
+    .header-content{
+      position:relative;
+      z-index:1;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+    }
+    .header-text h1{
+      font-size:2.6rem;
+      margin-bottom:5px;
+    }
+    .header-text p{
+      font-size:1.9rem;
+      color:#fdd835;
+    }
+    .header-text small{
+      font-size:1.2rem;
+      color:#006400;
+    }
+    .header-foto{
+      width:180px;
+      height:110px;
+      border-radius:12px;
+      background:#111;
+      border:2px solid #fdd835;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fdd835;
+      font-size:0.8rem;
+      text-align:center;
+      overflow:hidden;
+    }
+    .header-foto img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    /* MENU */
+    nav{
+      background:#000;
+      border-bottom:2px solid #008000;
+    }
+    .menu{
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      padding:10px;
+    }
+    .menu button{
+      background:#111;
+      color:#f4f4f4;
+      border:1px solid #008000;
+      padding:8px 12px;
+      border-radius:6px;
+      cursor:pointer;
+      font-size:0.9rem;
+      transition:0.2s;
+    }
+    .menu button:hover,
+    .menu button.ativo{
+      background:#008000;
+      color:#fff;
+      border-color:#fdd835;
+    }
+
+    /* CONTEÚDO GERAL */
+    main{
+      max-width:1100px;
+      margin:20px auto;
+      padding:0 10px 40px 10px;
+    }
+    .secao{
+      display:none;
+      animation:fadeIn 0.3s ease-in-out;
+    }
+    .secao.ativa{
+      display:block;
+    }
+    @keyframes fadeIn{
+      from{opacity:0; transform:translateY(10px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+
+    .card{
+      background:#101010;
+      border-radius:10px;
+      padding:20px;
+      margin-bottom:20px;
+      box-shadow:0 0 12px rgba(0,0,0,0.6);
+      border:1px solid rgba(253,216,53,0.3);
+    }
+    .card h2{
+      color:#fdd835;
+      margin-bottom:10px;
+    }
+    .card p{
+      font-size:0.95rem;
+      line-height:1.5;
+      margin-bottom:8px;
+    }
+    .tag{
+      display:inline-block;
+      font-size:0.75rem;
+      padding:3px 8px;
+      border-radius:12px;
+      background:#008000;
+      color:#fff;
+      margin-bottom:8px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1.2fr 1fr;
+      gap:20px;
+    }
+    @media(max-width:800px){
+      .header-content{flex-direction:column; align-items:flex-start;}
+      .grid-2{grid-template-columns:1fr;}
+    }
+
+    .foto-estande{
+      background:#050505;
+      border-radius:12px;
+      border:2px dashed #fdd835;
+      width:100%;
+      height:220px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fdd835;
+      font-size:0.85rem;
+      text-align:center;
+      overflow:hidden;
+    }
+    .foto-estande img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    /* FLUXOGRAMA SIMPLES */
+    .fluxograma{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      margin-top:10px;
+      font-size:0.9rem;
+    }
+    .flux-linha{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+    }
+    .flux-seta{
+      color:#fdd835;
+      font-size:1.4rem;
+    }
+    .flux-inicio,
+    .flux-fim{
+      padding:8px 18px;
+      border-radius:40px;
+      border:2px solid #4caf50;
+      background:#000;
+      color:#4caf50;
+      font-weight:bold;
+    }
+    .flux-processo{
+      padding:8px 16px;
+      border-radius:6px;
+      border:2px solid #4caf50;
+      background:#111;
+      color:#f4f4f4;
+      text-align:center;
+    }
+    .flux-decisao{
+      padding:10px 22px;
+      border-radius:6px;
+      border:2px solid #fdd835;
+      background:#222;
+      color:#fdd835;
+      transform:skewX(-20deg);
+    }
+    .flux-decisao span{
+      display:inline-block;
+      transform:skewX(20deg);
+    }
+
+    /* FORMULÁRIOS / BOTÕES ATIVIDADES */
+    input, select{
+      padding:6px 8px;
+      border-radius:4px;
+      border:1px solid #444;
+      background:#000;
+      color:#fff;
+      margin:3px 0;
+    }
+    input[type="number"]{
+      width:80px;
+      text-align:center;
+    }
+    button.acao{
+      padding:6px 12px;
+      border-radius:4px;
+      border:none;
+      cursor:pointer;
+      font-size:0.9rem;
+      font-weight:bold;
+      margin:4px 4px 4px 0;
+      transition:0.2s;
+    }
+    .btn-verde{background:#4caf50; color:#fff;}
+    .btn-azul{background:#2196f3; color:#fff;}
+    .btn-amarelo{background:#fdd835; color:#000;}
+    .btn-laranja{background:#ff9800; color:#000;}
+    .btn-vermelho{background:#f44336; color:#fff;}
+    button.acao:hover{
+      filter:brightness(1.1);
+      transform:translateY(-1px);
+    }
+
+    .resultado{
+      margin-top:8px;
+      font-size:0.95rem;
+    }
+    .resultado.aprovado{color:#4caf50;}
+    .resultado.reprovado{color:#f44336;}
+
+    footer{
+      text-align:center;
+      font-size:0.75rem;
+      color:#aaa;
+      margin-top:20px;
+      padding-top:10px;
+      border-top:1px solid #222;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <div class="header-text">
+      <h1>Dia "D" da Educação Profissional e Tecnológica</h1>
+      <p>CETI - PROFESSORA MARIA DE CASTRO RIBEIRO</p>
+      <small>Curso Técnico em Desenvolvimento de Sistemas </small>
+   
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="menu">
+    <button class="ativo" onclick="mostrarSecao('inicio', this)">Início</button>
+    <button onclick="mostrarSecao('est1', this)">Estande 1 – Programação na Prática</button>
+    <button onclick="mostrarSecao('est2', this)">Estande 2 – Criação de Sites</button>
+    <button onclick="mostrarSecao('est3', this)">Estande 3 – Jogos e Diversão</button>
+    <button onclick="mostrarSecao('est4', this)">Estande 4 – Pensamento Lógico</button>
+  </div>
+</nav>
+
+<main>
+  <!-- SEÇÃO INÍCIO -->
+  <section id="inicio" class="secao ativa">
+    <div class="card grid-2">
+      <div>
+        <span class="tag">Boas-vindas</span>
+        <h2>Conheça o curso de Desenvolvimento de Sistemas</h2>
+        <p>
+ 		
+          O Curso Técnico em Desenvolvimento de Sistemas é uma formação profissional voltada para o ensino de tecnologias, programação e metodologias utilizadas na criação de softwares e sistemas digitais. O objetivo principal do curso é capacitar o aluno a compreender, planejar, desenvolver, implementar e manter sistemas computacionais que atendam às necessidades de empresas, instituições e usuários.<br>
+
+Durante o curso, os alunos aprendem desde conceitos básicos de lógica de programação até técnicas avançadas de desenvolvimento, incluindo linguagens de programação, bancos de dados, construção de interfaces, desenvolvimento web e criação de aplicativos. Além disso, são introduzidos aos conceitos de análise de requisitos, documentação de sistemas, testes e manutenção de softwares.<br>
+
+O curso combina teoria e prática, promovendo atividades como criação de sites, desenvolvimento de jogos, construção de sistemas para controle de dados e automatização de processos. Essa abordagem prática permite que o aluno desenvolva habilidades de raciocínio lógico, resolução de problemas, criatividade e trabalho em equipe, competências essenciais para o mercado de tecnologia.<br>
+
+Ao concluir o curso, o profissional estará apto a atuar em diferentes áreas de TI, como desenvolvimento de aplicativos, programação web, automação de processos e manutenção de sistemas. Ele terá também a capacidade de acompanhar as evoluções tecnológicas e adaptar-se a novas linguagens e ferramentas de programação, tornando-se um profissional preparado para os desafios do mercado de trabalho moderno.
+         
+        </p>
+      
+        <p style="margin-top:8px; color:#fdd835;">
+          Use o menu acima para visitar cada estande, participar das atividades e tirar suas dúvidas.
+        </p>
+      </div>
+      <div class="foto-estande">
+        <!-- Você pode trocar esta imagem geral se quiser -->
+        <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&w=900&q=80" 
+             alt="Dia D da Educação Profissional">
+      </div>
+    </div>
+
+    <div class="card">
+      	
+      <p>
+        Neste DIA "D" da Educação Profissional e Tecnológica, convidamos você a conhecer de perto o incrível trabalho desenvolvido pelos alunos do curso Técnico em Desenvolvimento de Sistemas do CETI – PROFESSORA MARIA DE CASTRO RIBEIRO. Este evento é muito mais do que uma apresentação: é a oportunidade de vivenciar, experimentar e se encantar com a criatividade, dedicação e talento de nossos estudantes.
+
+Cada estande que você vai visitar foi cuidadosamente planejado e construído pelos próprios alunos, com orientação atenta de nossos professores e o apoio essencial da escola. Eles colocaram em prática tudo o que aprendem ao longo do curso: desde programação e criação de sites até desenvolvimento de jogos digitais e desafios de lógica. O resultado é uma experiência interativa e dinâmica, onde o conhecimento se transforma em prática, diversão e inovação.
+
+Além de mostrar o que nossos alunos são capazes de fazer, este evento evidencia o espírito colaborativo que move nossa escola. Professores, alunos e a equipe administrativa trabalharam juntos para que cada detalhe fosse pensado para você: cada estande, cada desafio e cada atividade foi planejado para despertar curiosidade, estimular o aprendizado e inspirar novas ideias.
+
+Queremos expressar nosso agradecimento especial aos professores e a toda a equipe da escola, cujo apoio, orientação e dedicação tornaram este evento possível. Sem o comprometimento de cada um, não seria possível transformar o aprendizado em uma experiência tão rica e envolvente.
+
+Venha explorar, experimentar e se surpreender! Descubra como a tecnologia pode ser divertida, criativa e transformadora, e veja de perto como a dedicação, o talento e a inovação dos nossos alunos, aliados ao apoio de professores e equipe escolar, fazem toda a diferença. Este é o momento de aprender, se inspirar e se envolver com o futuro da educação profissional e tecnológica!
+      </p>
+
+        </section>
+
+  <!-- ESTANDE 1 – PROGRAMAÇÃO NA PRÁTICA -->
+  <section id="est1" class="secao">
+    <div class="card grid-2">
+      <div>
+        <span class="tag">Estande 1</span>
+        <h2>Programação na Prática</h2>
+        <p>
+          Aqui mostramos como a programação pode resolver problemas reais, como calcular médias,
+          organizar dados e automatizar tarefas do dia a dia escolar.<br><br><br><br>Programação é a arte de criar instruções que dizem ao computador como realizar tarefas. Por meio de linguagens de programação, como Python, Java ou JavaScript, é possível desenvolver desde sites e aplicativos até sistemas complexos e jogos. Aprender a programar ajuda a resolver problemas, automatizar tarefas e transformar ideias em soluções digitais, sendo uma habilidade cada vez mais importante no mundo atual.
+        </p>
+        <p>
+          A calculadora abaixo simula o que fazemos em Python na disciplina de Programação.
+          A lógica é a mesma: entrada de dados, processamento e saída do resultado.<br><br><br>O programa "Calculadora de Média Escolar" permite que o usuário digite quatro notas de um aluno, cada uma variando de 0 a 10. Em seguida, o programa calcula a média aritmética dessas quatro notas e informa se o aluno está aprovado ou reprovado.
+
+A aprovação é definida por um valor mínimo de média, por exemplo, 6,0. Se a média do aluno for igual ou maior que esse valor, ele é considerado aprovado; caso contrário, ele é reprovado.
+
+Ou seja, o programa automatiza o cálculo da média e dá um resultado imediato sobre a situação do aluno, facilitando o acompanhamento do desempenho escolar.
+        </p>
+      </div>
+      <div class="foto-estande">
+        <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&w=900&q=80" 
+             alt="Programação na prática">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Atividade: Calculadora de Média Escolar</h2>
+      <p>Digite quatro notas (0 a 10) e veja se o aluno está aprovado ou reprovado.</p>
+      <div>
+        <label>Nota 1: <input type="number" id="n1" min="0" max="10" step="0.1"></label><br>
+        <label>Nota 2: <input type="number" id="n2" min="0" max="10" step="0.1"></label><br>
+        <label>Nota 3: <input type="number" id="n3" min="0" max="10" step="0.1"></label><br>
+        <label>Nota 4: <input type="number" id="n4" min="0" max="10" step="0.1"></label><br>
+        <button class="acao btn-verde" onclick="calcularMedia()">Calcular Média</button>
+      </div>
+      <div id="resultadoMedia" class="resultado"></div>
+    </div>
+  </section>
+
+  <!-- ESTANDE 2 – CRIAÇÃO DE SITES -->
+  <section id="est2" class="secao">
+    <div class="card grid-2">
+      <div>
+        <span class="tag">Estande 2</span>
+        <h2>Criação de Sites</h2>
+        <p>
+          No curso, os alunos aprendem a criar sites desde o zero, usando HTML, CSS e JavaScript.
+          É assim que surgem páginas como esta que você está vendo agora.<br><br><br><br>Criação de sites é o processo de planejar, construir e colocar um site na internet, seja para divulgar informações, vender produtos ou apresentar um portfólio. Envolve definir o objetivo e o conteúdo, criar um visual atraente, programar ou usar ferramentas que facilitem a montagem, e depois publicar o site com um domínio e hospedagem. É importante que o site funcione bem em celulares e computadores, seja rápido, seguro e fácil de usar.
+        </p>
+        <p>
+          A atividade abaixo mostra que com poucas alterações você já consegue personalizar um site
+          com seu próprio título e cor de destaque.
+        </p>
+      </div>
+     <div class="foto-estande">
+        <!-- Sua imagem: hpjSkU2UYSU -->
+        <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=900&q=80"
+             alt="Laptop em mesa com site aberto">
+    </div>
+
+    <div class="card">
+      <h2>Atividade: Personalize o Título e a Cor</h2>
+      <p>Digite um título e escolha uma cor para ver como o site muda na hora.</p>
+      <div style="margin-bottom:8px;">
+        <label>Novo título: <input type="text" id="tituloPersonalizado" placeholder="Ex: Meu Primeiro Site"></label>
+      </div>
+      <div style="margin-bottom:8px;">
+        <label>Cor de destaque:
+          <select id="corDestaque">
+            <option value="#008000">Verde</option>
+            <option value="#fdd835">Amarelo</option>
+            <option value="#00e5ff">Ciano</option>
+            <option value="#ff5722">Laranja</option>
+            <option value="#e91e63">Rosa</option>
+          </select>
+        </label>
+      </div>
+      <button class="acao btn-azul" onclick="aplicarPersonalizacao()">Aplicar mudanças</button>
+
+      <div id="previewSite" class="card" style="margin-top:12px; background:#080808;">
+        <h3 id="previewTitulo" style="color:#fdd835;">Exemplo de Título do Site</h3>
+        <p>
+          Esta é uma pré-visualização. O que você digitar e a cor que escolher serão aplicados aqui,
+          simulando como seria um site personalizado.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTANDE 3 – JOGOS E DIVERSÃO -->
+  <section id="est3" class="secao">
+    <div class="card grid-2">
+      <div>
+        <span class="tag">Estande 3</span>
+        <h2>Jogos e Diversão com Programação</h2>
+        <p>
+          Jogos digitais começam com ideias simples: regras, condições, desafios e recompensas.
+          Com programação, transformamos tudo isso em interação na tela.<br><br><br><br>Programação não serve apenas para trabalho ou aplicativos sérios; também pode ser muito divertida! Criar jogos é uma forma de aprender lógica, raciocínio e resolução de problemas enquanto se diverte. Com linguagens como Scratch, Python ou JavaScript, é possível desenvolver jogos simples ou complexos, testar ideias e ver resultados imediatos, transformando o aprendizado em uma experiência prática e divertida.
+        </p>
+        <p>
+          No jogo abaixo, o computador escolhe um número secreto e você tenta adivinhar.
+          Cada tentativa é uma decisão que a lógica do programa interpreta.
+        </p>
+      </div>
+      <div class="foto-estande">
+        <img src="https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=900&q=80" 
+             alt="Jogos e diversão">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Atividade: Adivinhe o Número Secreto</h2>
+      <p>
+        O computador escolheu um número entre <strong>1 e 20</strong>.  
+        Tente adivinhar! Você receberá dicas se o número é maior ou menor.
+      </p>
+      <div class="jogo">
+        <label for="palpite">Seu palpite:</label>
+        <input type="number" id="palpite" min="1" max="20">
+        <button class="acao btn-verde" onclick="tentarNumero()">Tentar</button>
+        <button class="acao btn-laranja" onclick="reiniciarNumero()">Reiniciar Jogo</button>
+        <div id="mensagemJogo" class="resultado"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTANDE 4 – PENSAMENTO LÓGICO -->
+  <section id="est4" class="secao">
+    <div class="card grid-2">
+      <div>
+        <span class="tag">Estande 4</span>
+        <h2>Pensamento Lógico – Desafie-se!</h2>
+        <p>
+          Pensamento lógico é a capacidade de organizar ideias de forma clara e ordenada para resolver problemas ou tomar decisões. Ele ajuda a analisar situações, identificar padrões, prever consequências e criar soluções eficientes. Desenvolver o pensamento lógico é fundamental na programação, nas ciências, nas tarefas do dia a dia e em qualquer situação que exija raciocínio estruturado..<br><br>
+
+        </p>
+        <p>
+          Os desafios deste estande mostram que lógica não é só coisa de computador:
+          é uma habilidade para a vida toda.
+        </p>
+      </div>
+      <div class="foto-estande">
+        <!-- DXg2BSqjD64 -->
+        <img src="https://images.unsplash.com/photo-1505685296765-3a2736de412f?auto=format&fit=crop&w=900&q=80"
+             alt="Pessoa segurando um cubo de Rubik">
+    </div>
+
+    <div class="card">
+      <h2>Desafio de Lógica: Interruptores e Lâmpadas</h2>
+      <p>
+        Em uma sala há <strong>3 interruptores</strong> e, em outra sala fechada, há <strong>3 lâmpadas</strong>.
+        Você não consegue ver as lâmpadas da sala dos interruptores.
+      </p>
+      <p>
+        Você pode ir até a sala das lâmpadas <strong>apenas uma vez</strong>.  
+        Como descobrir qual interruptor acende qual lâmpada?
+      </p>
+
+      <button class="acao btn-amarelo" onclick="mostrarDica()">Ver uma dica</button>
+      <button class="acao btn-verde" onclick="mostrarResposta()">Ver resposta</button>
+
+      <div id="dicaEnigma" class="resultado"></div>
+      <div id="respostaEnigma" class="resultado"></div>
+    </div>
+  </section>
+
+  <footer>
+    DIA "D" da Educação Profissional e Tecnológica – Curso Técnico em Desenvolvimento de Sistemas - Turma B<br>
+    CETI - PROFESSORA MARIA DE CASTRO RIBEIRO – 2025
+  </footer>
+</main>
+
+<script>
+  // Troca de seções
+  function mostrarSecao(id, botao){
+    document.querySelectorAll(".secao").forEach(sec => sec.classList.remove("ativa"));
+    document.getElementById(id).classList.add("ativa");
+
+    document.querySelectorAll(".menu button").forEach(b => b.classList.remove("ativo"));
+    botao.classList.add("ativo");
+  }
+
+  // Atividade Estande 1 – Média Escolar
+  function calcularMedia(){
+    const n1 = parseFloat((document.getElementById("n1").value || "0").replace(",", ".")) || 0;
+    const n2 = parseFloat((document.getElementById("n2").value || "0").replace(",", ".")) || 0;
+    const n3 = parseFloat((document.getElementById("n3").value || "0").replace(",", ".")) || 0;
+    const n4 = parseFloat((document.getElementById("n4").value || "0").replace(",", ".")) || 0;
+
+    const media = (n1 + n2 + n3 + n4) / 4;
+    const res = document.getElementById("resultadoMedia");
+
+    if(isNaN(media)){
+      res.textContent = "Preencha as quatro notas corretamente.";
+      res.className = "resultado";
+      return;
+    }
+
+    const mediaArred = media.toFixed(1).replace(".", ",");
+    if(media >= 6){
+      res.textContent = "Média: " + mediaArred + " – Aprovado(a)!";
+      res.className = "resultado aprovado";
+    }else{
+      res.textContent = "Média: " + mediaArred + " – Reprovado(a).";
+      res.className = "resultado reprovado";
+    }
+  }
+
+  // Atividade Estande 2 – Personalizar site
+  function aplicarPersonalizacao(){
+    const novoTitulo = document.getElementById("tituloPersonalizado").value.trim();
+    const cor = document.getElementById("corDestaque").value;
+    const previewTitulo = document.getElementById("previewTitulo");
+
+    if(novoTitulo !== ""){
+      previewTitulo.textContent = novoTitulo;
+    }
+    previewTitulo.style.color = cor;
+  }
+
+  // Atividade Estande 3 – Jogo de adivinhar número
+  let numeroSecreto = Math.floor(Math.random() * 20) + 1;
+  let tentativas = 0;
+
+  function tentarNumero(){
+    const campo = document.getElementById("palpite");
+    const msg = document.getElementById("mensagemJogo");
+    const valor = Number(campo.value);
+
+    if(!valor || valor < 1 || valor > 20){
+      msg.textContent = "Digite um número entre 1 e 20.";
+      msg.className = "resultado";
+      return;
+    }
+
+    tentativas++;
+
+    if(valor === numeroSecreto){
+      msg.textContent = "🎉 Parabéns! Você acertou em " + tentativas + " tentativa(s).";
+      msg.className = "resultado aprovado";
+    } else if(valor < numeroSecreto){
+      msg.textContent = "🔼 O número secreto é MAIOR que " + valor + ". Tente de novo!";
+      msg.className = "resultado";
+    } else {
+      msg.textContent = "🔽 O número secreto é MENOR que " + valor + ". Tente de novo!";
+      msg.className = "resultado";
+    }
+
+    campo.value = "";
+    campo.focus();
+  }
+
+  function reiniciarNumero(){
+    numeroSecreto = Math.floor(Math.random() * 20) + 1;
+    tentativas = 0;
+    const msg = document.getElementById("mensagemJogo");
+    msg.textContent = "Novo número secreto gerado! Comece a tentar.";
+    msg.className = "resultado";
+    document.getElementById("palpite").value = "";
+    document.getElementById("palpite").focus();
+  }
+
+  // Atividade Estande 4 – Enigma
+  function mostrarDica(){
+    const dica = document.getElementById("dicaEnigma");
+    dica.textContent = "Dica: use o calor das lâmpadas para descobrir quais foram ligadas.";
+  }
+
+  function mostrarResposta(){
+    const resp = document.getElementById("respostaEnigma");
+    resp.textContent =
+      "Resposta: ligue o primeiro interruptor e deixe um tempo, depois desligue e ligue o segundo. " +
+      "Vá até a sala das lâmpadas: a lâmpada acesa é do segundo interruptor, a apagada quente é do primeiro " +
+      "e a apagada fria é do terceiro.";
+  }
+</script>
+
+</body>
+</html>
